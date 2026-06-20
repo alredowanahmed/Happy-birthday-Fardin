@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Fardin</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.photo{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    border:6px solid gold;
+    overflow:hidden;
+    box-shadow:0 0 30px gold;
+    margin-bottom:25px;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+h1{
+    font-size:4rem;
+    color:#ffd700;
+    text-shadow:0 0 20px gold;
+}
+
+h2{
+    margin-top:15px;
+    font-size:2rem;
+}
+
+.age{
+    margin-top:10px;
+    font-size:1.5rem;
+    color:#00e5ff;
+}
+
+.message{
+    max-width:800px;
+    margin-top:30px;
+    font-size:1.2rem;
+    line-height:1.8;
+    padding:20px;
+}
+
+.btn{
+    margin-top:25px;
+    padding:15px 30px;
+    border:none;
+    border-radius:50px;
+    background:gold;
+    color:black;
+    font-size:18px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:scale(1.08);
+}
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+
+<div class="hero">
+
+<div class="photo">
+<img src="https://kommodo.ai/i/m44OFjEhW9pzTATSpKoJ" alt="Fardin">
+</div>
+
+<h1>🎂 HAPPY BIRTHDAY 🎂</h1>
+
+<h2>Al Reyad Ahmed Fardin</h2>
+
+<div class="age">🎉 18 Years Old 🎉</div>
+
+<div class="message">
+Dear Fardin,<br><br>
+
+Today is your special day. May your life be filled with happiness,
+success, good health, and endless opportunities.
+
+Keep chasing your dreams, keep smiling, and keep making everyone proud.
+
+May Allah bless you with a bright future and a wonderful life ahead.
+
+❤️ Happy 18th Birthday ❤️
+</div>
+
+<button class="btn" onclick="playMusic()">
+🎵 Play Birthday Music
+</button>
+
+<audio id="music" loop>
+<source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+function playMusic(){
+    document.getElementById('music').play();
+}
+
+// Confetti Animation
+const canvas=document.getElementById('confetti');
+const ctx=canvas.getContext('2d');
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const particles=[];
+
+for(let i=0;i<200;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*6+2,
+d:Math.random()*200
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+for(let i=0;i<particles.length;i++){
+let p=particles[i];
+
+ctx.beginPath();
+ctx.fillStyle=`hsl(${Math.random()*360},100%,50%)`;
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fill();
+
+p.y+=2;
+if(p.y>canvas.height){
+p.y=-10;
+p.x=Math.random()*canvas.width;
+}
+}
+requestAnimationFrame(draw);
+}
+
+draw();
+
+window.addEventListener('resize',()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+});
+</script>
+
+</body>
+</html>
